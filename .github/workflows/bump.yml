@@ -21,5 +21,12 @@ jobs:
         repository: mcm001/photonvision
         run-id: ${{ github.event.client_payload.run_id }}
         merge-multiple: true
+        path: $GITHUB_WORKSPACE/2025
 
     - run: find .
+    - run: git status
+    
+    - uses: actions/setup-python@v5
+      with:
+        python-version: '3.12'
+    - run: python3 fixup_year.py 2025
