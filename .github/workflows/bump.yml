@@ -15,5 +15,7 @@ jobs:
     - uses: actions/checkout@v4
 
     - run: gh run download ${{ github.event.client_payload.run_id }} --repo mcm001/photonvision
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     - run: find .
