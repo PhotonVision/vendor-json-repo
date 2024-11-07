@@ -14,8 +14,13 @@ jobs:
 
     - uses: actions/checkout@v4
 
-    - run: gh run download ${{ github.event.client_payload.run_id }} --repo mcm001/photonvision
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - uses: actions/download-artifact@v4
+      with:
+        name: my-other-artifact
+        github-token: ${{ secrets.GITHUB_TOKEN }} # token with actions:read permissions on target repo
+        repository: mcm001/photonvision
+        run-id: ${{ github.event.client_payload.run_id }}
+        pattern: photonlib-vendor-json
+        merge-multiple: true
 
     - run: find .
