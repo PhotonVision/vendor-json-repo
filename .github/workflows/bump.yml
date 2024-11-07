@@ -16,11 +16,10 @@ jobs:
 
     - uses: actions/download-artifact@v4
       with:
-        name: my-other-artifact
+        name: photonlib-vendor-json
         github-token: ${{ secrets.GITHUB_TOKEN }} # token with actions:read permissions on target repo
         repository: mcm001/photonvision
         run-id: ${{ github.event.client_payload.run_id }}
-        pattern: photonlib-vendor-json
         merge-multiple: true
 
     - run: find .
